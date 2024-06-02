@@ -12,7 +12,7 @@
     <slot></slot>
     </main>
 
-    <div class="border-t border-secondary flex justify-center sticky">
+    <div class="border-t border-secondary flex justify-center sticky mt-8">
         <a href="/" class=" hover:text-accent p-4 transition-all transition-duration: 150ms;">Home</a>
         <a href="/blog/" class=" hover:text-accent p-4 transition-all transition-duration: 150ms;">Blog</a>
         <a href="/websites/" class=" hover:text-accent p-4 transition-all transition-duration: 150ms;">Useful Websites</a>
