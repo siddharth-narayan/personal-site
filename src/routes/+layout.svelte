@@ -1,6 +1,8 @@
 <script>
     import "../app.css";
+    import '../markdown.css';
 </script>
+
 <div class="flex flex-col h-full">
     <div class="border-b border-secondary flex justify-center sticky mb-8">
         <a href="/" class=" hover:text-accent p-4 transition-all transition-duration: 150ms;">Home</a>

@@ -1,0 +1,49 @@
+blockquote {
+  border-left: 3px solid #999;
+  padding-left: 1em;
+  margin-left: 1em;
+  background-color: #232323;
+}
+
+code {
+    font-family: Menlo, Monaco, "Courier New", monospace;
+    background-color: #232323;
+    border-radius: .1em;
+    border: 1px solid #424242;
+    padding:.1em;
+}
+
+li {
+    margin-left: 1em;
+}
+
+li::marker {
+    content: '• ';
+    font-size: 1.2em;
+}
+  
+a {
+    color: #92b8e4;
+    text-decoration-line: underline;
+}
+
+/* Heading styles */
+h1 {
+    font-size: 2em;
+}
+
+h2 {
+    font-size: 1em;
+}
+h3 {
+    font-size: .5em;
+}
+
+h1,
+h2,
+h3 {
+    padding: .3em;
+    text-justify:inter-ideograph;
+    border-bottom: 1px solid #424242;
+}
+
