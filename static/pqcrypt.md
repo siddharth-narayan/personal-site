@@ -1,17 +1,23 @@
-# Post Quantum key agreement for TLS 1.3
-Adds the ability to load the [oqsprovider](https://github.com/open-quantum-safe/oqs-provider) OpenSSL Provider if present. 
-Adds a call to SSL_set1_groups_list  to set the correct groups in StartSSLEx3. If this fails, the default groups will be used. The extra groups are provided by oqsprovider, if installed.
+# Post Quantum Cryptography
 
-**Will only work for OpenSSL 3.0 or greater, where oqsprovider is installed and on TLS1.3**
+Welcome to my first ever blog post! I'm going to go over the process of everything post quantum that I've worked on for the past month or so.
 
-In order of highest priority, here is the list of groups:
-- p521_kyber (Quantum safe, hybrid)
-- x25519_kyber (Quantum safe, hybrid)
-- P-521 (Not quantum safe)
-- X25519 (Not quantum safe)
-- P-256 (Not quantum safe)
+### Intro
+This adventure started a long time ago, when the YouTube channel Veritasium [released a video](https://www.youtube.com/watch?v=-UrdExQW0cs) on post quantum cryptography. Ever since watching that video, it's been stuck in the back of my mind that every bit of information we send across the internet is potentially being collected and stored by very powerful organizations like governments, so that someday in the future they will be able to read it.
+It took a long time before I actually started work on anything, but one day I decided that [SoftEtherVPN](https://www.softether.org/), the VPN I have set up on my server would be pretty cool if it could be safe from any attacks by post quantum computers. The first thing I did was research. After learning the basics about how TLS works currently, I had to find out how to find out how to make it post quantum. TLS first does a key exchange before using symmetric encryption. Because symmetric encryption is still **[mostly](https://crypto.stackexchange.com/questions/6712/is-aes-256-a-post-quantum-secure-cipher-or-not)** quantum safe, the only part that needs to be fixed is the key exchange. I targeted TLS1.3, because it's the latest version.
+Now that I had found out what to do, I needed to find out how to do it. After many google searches and looking through the SoftEtherVPN source code, I knew what to do. SoftEtherVPN, like many other things uses OpenSSL. OpenSSL allows setting TLS groups using ```SSL_set1_groups_list```, so I knew that I had to set the proper groups. (a TLS group seems to be just a Key Exchange Method (KEM)). The only problem is that OpenSSL doesn't support post quantum groups.
 
-I created this order following the guidance from the [openssl blog](https://www.openssl.org/blog/blog/2022/10/21/tls-groups-configuration/). It is in order of most secure but also most resource heavy, which I'm not sure is ideal. However, because this is just a key exchange, it only happens once, at the beginning of communication.
+### Actually Making it Work
+We need a way to make OpenSSL recognize that post quantum groups. Right now, there is no built in support for that in OpenSSL. This is for a good reason. OpenSSL is made of many different versions. OpenSSL 1.1.1 seems to be the latest verion released for basic OpenSSL. However, there is another version OpenSSL 3. Neither version has support for post quantum key exchange, but OpenSSL 3 has a "plugin" system in which plugins are called providers, because they provide new functionality (Ciphers, Signature Verification, Key Exchange, etc...). Providers seem to be the method for adding all extra functionality. We are interested in the key exchange part of what providers can do.
+There is a project which implements all quantum resistant algorithms: [Open Quantum Safe (OQS)](https://openquantumsafe.org/). They have created a library called liboqs, which implements post quantum KEMs and Signature Verification. The have also created an OpenSSL provider which is called oqs-provider. Neither of these are popular enough to be in any repositories except for in the Nix package manager. Luckily for me, I use NixOS (btw). *Unfortunately*, only liboqs is in the nixpkgs repository (a big thank you to whoever put it there). This meant that I had to compile oqs-provider from source. This one is pretty simple, even with Nix. Unfortunately, the way that Nix works meant that I also had to recompile OpenSSL, which was a very difficult thing to do, because I wasn't very familiar with Nix yet, and the state of the documentation still not great. Because I don't want to go on too big of a tangent, if you're interested, you can [see for yourself](https://github.com/siddharth-narayan/openssl-with-providers) the solution I came up with. 
+Once OpenSSL is installed and oqs-provider is installed and enabled, everything becomes very simple. Simply call ```SSL_set1_groups_list``` with the proper arguments sometime before SSL is enabled and make sure oqs-provider is loaded in the code, and OpenSSL will do the rest. It only took 13 lines of code to actually make the changes necessary. Checking the ClientHello packet in Wireshark, we can see that the client really does try to negotiate a post quantum key exchange<sup>1</sup>.
 
+![Wireshark Screenshot](https://novaphaze.com/wireshark.png)
 
-![Screenshot_20240520_230208](https://github.com/SoftEtherVPN/SoftEtherVPN/assets/26383051/1e4f0564-3f07-4be4-9960-20d70c2351f0)
+These groups are ***Hybrid***. This means that even if for some reason Kyber (The post quantum KEM) is broken in the future, whether by classical or quantum computers, the classical key exchange is still secure. This is the best method for implementing post quantum cryptography, which is still somewhat untested and new.
+
+### Enabling Post Quantum Cryptography
+If you've read this far, and have decided you want to enable post quantum cryptography, you can definitely do so. Check at the bottom of this page to see your connection details! Right now Chrome and Firefox both support the TLS group x25519_kyber768. I'm not sure about support on Edge. Cloudflare already supports TLS 1.3 with post quantum cryptography enabled, and Wireguard has gotten support as well. According to Cloudflare, 2% of all TLS 1.3 connections are already secured with post quantum cryptography. Adoption is rising very quickly, which is great news! 
+
+> **Note:** Enabling support in Chrome can be done by going to chrome://flags and setting **TLS 1.3 hybridized Kyber support** to true
+Enabling support in Firefox can be done by going to about:config and setting **security.tls.enable_kyber** to true

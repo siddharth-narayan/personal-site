@@ -1,6 +1,8 @@
 blockquote {
   border-left: 3px solid #999;
+  padding: .5em;
   padding-left: 1em;
+  padding-right: 1em;
   margin-left: 1em;
   background-color: #232323;
 }
@@ -14,7 +16,7 @@ code {
 }
 
 li {
-    margin-left: 1em;
+    margin-left: 2em;
 }
 
 li::marker {
@@ -27,16 +29,21 @@ a {
     text-decoration-line: underline;
 }
 
+img {
+    padding: 1em;
+    background-color: #232323;
+}
+
 /* Heading styles */
 h1 {
-    font-size: 2em;
+    font-size: 2.5em;
 }
 
 h2 {
-    font-size: 1em;
+    font-size: 2em;
 }
 h3 {
-    font-size: .5em;
+    font-size: 1.5em;
 }
 
 h1,

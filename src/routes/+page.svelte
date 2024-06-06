@@ -1,3 +1,7 @@
+<svelte:head>
+    <title>My Personal Website</title> 
+</svelte:head>
+
 <div class="flex flex-col gap-8">
     <h1 class="text-4xl border-b border-secondary p-4 w-full text-center">Welcome to my website !</h1>
     <div class="w-[40em] self-center text-justify">

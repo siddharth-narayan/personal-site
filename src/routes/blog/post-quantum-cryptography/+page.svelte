@@ -1,20 +1,22 @@
+<svelte:head>
+    <title>Post Quantum Cryptography</title> 
+</svelte:head>
+
 <script>
     import { onMount } from 'svelte'
     import { marked } from 'marked';
 
-    export let markdownContent = "";
+    export let markdownContent = "**Loading :)**";
 
     let htmlContent = '';
-    $: {
-        if(markdownContent != ""){
-            htmlContent = marked(markdownContent, { breaks: true });
-        }
-    }
+    $: { htmlContent = marked(markdownContent, { breaks: true }); }
 
     let curve = ""
+    let curves = ""
     onMount(() => {
         fetch('https://novaphaze.com/curves.json').then(response => {
             let curveName = response.headers.get("x-ssl-curve")
+            curves = response.headers.get("x-ssl-curves")
             response.json().then(json => {
                 if (curveName?.startsWith("0x")){
                     curve = json[curveName]["name"]
@@ -24,7 +26,7 @@
                 }
             })
         })
-        fetch('https://novaphaze.com/pqcrypt.md').then(response => {
+        fetch('../pqcrypt.md').then(response => {
             response.text().then(text => {
                 console.log(text)
                 markdownContent = text
@@ -34,23 +36,22 @@
 </script>
 
 <div class="flex flex-col gap-8">
-    <h1 class="text-4xl border-b border-secondary p-4 w-full text-center">Post Quantum Cryptography</h1>
-    <div class="w-[40em] self-center text-justify">
-        <p>Welcome to my first ever blog post! I'm going to go over the process of everything post quantum that I've worked on for the past month or so.</p>
-        <p>This adventure started a long time ago, when Veritasium released a video on post quantum cryptography</p>
+    <div class="w-[40em] self-center">
         <div class="markdown-body flex flex-col gap-4">
             {@html htmlContent}
         </div>
+        <br>
         {#if curve != ""}
             {#if curve.includes("kyber")}
                 <div class="green">
-                    <p>You ARE connected with a post quantum key exchange. Be proud, you are one of only a few people!</p>
+                    <p>Connected with curve {curve}. This means that your device is using post quantum cryptography</p>
                 </div>
             {:else}
                 <div class="red">
-                    <p>You are NOT connected with a post quantum key exchange. (Don't worry, basically nobody is)</p>
+                    <p>Connected with curve {curve}. This means that your device is not using post quantum cryptography</p>
                 </div>
-            {/if}                
+            {/if}
+            <p>This device sent a ClientHello saying that it supports the following curves: {curves}</p>
         {/if}
     </div>
 </div>
@@ -61,5 +62,8 @@
     }
     .red {
         color: red;
+    }
+    .unjustify {
+        text-justify: inter-character;
     }
 </style>
