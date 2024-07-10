@@ -29,6 +29,6 @@
            
         </div>
         
-        <a href="https://www.flaticon.com/free-icons/abstract-shape" class=" hover:text-accent flex flex-row-reverse p-4 transition-all w-[25vw] transition-duration: 150ms; text-secondary" title="abstract-shape icons">Icons from Flaticon</a>
+        <a href="https://www.flaticon.com/free-icons/abstract-shape" class=" hover:text-accent flex flex-row-reverse p-4 transition-all w-[25vw] transition-duration: 150ms; text-secondary" title="abstract-shape icons">Icon(s) from Flaticon</a>
     </div>
 </div>

@@ -9,7 +9,7 @@ export default {
       xl: "1440px",
     },
     colors: {
-      'text': '#c0c0c0',
+      'text': '#afafaf',
       'background': '#1c1c1c',
       'primary': '#232323',
       'secondary': '#424242',
