@@ -18,6 +18,7 @@
 
 .markdown-body pre > code {
   font-family: Menlo, Monaco, "Courier New", monospace;
+  padding: .2em;
   border: none;
 }
 
