@@ -36,7 +36,7 @@
 </script>
 
 <div class="flex flex-col gap-8">
-    <div class="w-[40em] self-center">
+    <div class="w-[55em] self-center">
         <div class="markdown-body flex flex-col gap-4">
             {@html htmlContent}
         </div>
