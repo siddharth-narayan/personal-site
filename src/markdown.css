@@ -6,13 +6,16 @@
     margin-left: 1em;
     background-color: #232323;
   }
-  
+
+  .markdown-body pre {
+      background-color: #232323;
+      border-radius: .4em;
+      border: 1px solid #424242;
+      padding: 1em;
+  }
+
   .markdown-body code {
       font-family: Menlo, Monaco, "Courier New", monospace;
-      background-color: #232323;
-      border-radius: .1em;
-      border: 1px solid #424242;
-      padding:.1em;
   }
   
   .markdown-body li {
