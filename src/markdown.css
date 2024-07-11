@@ -12,7 +12,7 @@
       border-radius: .4em;
       border: 1px solid #424242;
       padding: 1em;
-      overlow: scroll;
+      overflow: scroll;
   }
 
   .markdown-body code {
