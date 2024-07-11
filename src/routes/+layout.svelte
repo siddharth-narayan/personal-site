@@ -3,14 +3,14 @@
     import '../markdown.css';
 </script>
 
-<div class="flex flex-col h-full">
-    <div class="border-b border-secondary flex justify-center sticky mb-8">
+<div class="flex flex-col h-full xs:text-xs sm:text-sm md:text-base">
+    <div class="border-b border-secondary flex gap-2 justify-center sticky mb-8">
         <a href="/" class=" hover:text-accent p-4 transition-all transition-duration: 150ms;">Home</a>
         <a href="/blog/" class=" hover:text-accent p-4 transition-all transition-duration: 150ms;">Blog</a>
         <a href="/websites/" class=" hover:text-accent p-4 transition-all transition-duration: 150ms;">Useful Websites</a>
     </div>
 
-    <main class="flex-grow self-center w-[50vw]">
+    <main class="flex-grow self-center flex flex-col gap-8 w-[min(50em,80vw)]">
     <slot></slot>
     </main> 
 

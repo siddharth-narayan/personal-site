@@ -2,7 +2,7 @@
     <title>Post Quantum Cryptography</title> 
 </svelte:head>
 
-<script>
+<script lang="ts">
     import { onMount } from 'svelte'
     import { marked } from 'marked';
 
@@ -12,17 +12,17 @@
     $: { htmlContent = marked(markdownContent, { breaks: true }); }
 
     let curve = ""
-    let curves = ""
+    let curves = "";
     onMount(() => {
-        fetch('https://novaphaze.com/curves.json').then(response => {
-            let curveName = response.headers.get("x-ssl-curve")
-            curves = response.headers.get("x-ssl-curves")
+        fetch('/curves.json', {cache: "no-store"}).then(response => {
             response.json().then(json => {
-                if (curveName?.startsWith("0x")){
-                    curve = json[curveName]["name"]
-                    console.log(json[curveName]["name"])
-                } else {
-                    curve = curveName
+                curve = convertRawKeyName(response.headers.get("x-ssl-curve"), json)
+                let curvesArray = response.headers.get("x-ssl-curves")?.split(":")
+                if ( curvesArray != undefined) {
+                    for (let i = 0; i < curvesArray.length; i++) {
+                        curvesArray[i] = convertRawKeyName(curvesArray[i], json)
+                    }
+                    curves = curvesArray.join("")
                 }
             })
         })
@@ -33,28 +33,37 @@
             })
         })
     })
+
+    function convertRawKeyName(rawName: string | null, keys: any): string {
+        if (rawName == null) {
+            return ""
+        }
+
+        if (rawName?.startsWith("0x")){
+            return keys[rawName]
+        } else {
+            return rawName
+        }
+    }
 </script>
 
-<div class="flex flex-col gap-8">
-    <div class="w-[55em] self-center">
-        <div class="markdown-body flex flex-col gap-4">
-            {@html htmlContent}
-        </div>
-        <br>
-        {#if curve != ""}
-            {#if curve.includes("kyber")}
-                <div class="green">
-                    <p>Connected with curve {curve}. This means that your device is using post quantum cryptography</p>
-                </div>
-            {:else}
-                <div class="red">
-                    <p>Connected with curve {curve}. This means that your device is not using post quantum cryptography</p>
-                </div>
-            {/if}
-            <p>This device sent a ClientHello saying that it supports the following curves: {curves}</p>
-        {/if}
-    </div>
+<div class="markdown-body flex flex-col gap-4">
+    {@html htmlContent}
 </div>
+<br>
+{#if curve != ""}
+    {#if curve.includes("kyber")}
+        <div class="green">
+            <p>Connected with curve {curve}. This means that your device is using post quantum cryptography</p>
+        </div>
+    {:else}
+        <div class="red">
+            <p>Connected with curve {curve}. This means that your device is not using post quantum cryptography</p>
+        </div>
+    {/if}
+    <p>This device sent a ClientHello saying that it supports the following curves: {curves}</p>
+{/if}
+
 
 <style>
     .green {

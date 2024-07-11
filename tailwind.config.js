@@ -2,7 +2,8 @@
 export default {
   content: ['./src/**/*.{html,js,svelte,ts}'],
   theme: {
-        screens: {
+    screens: {
+      xs: "200px",
       sm: "480px",
       md: "768px",
       lg: "976px",
