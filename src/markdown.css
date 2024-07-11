@@ -22,12 +22,15 @@
   .markdown-body li {
       margin-left: 2em;
   }
-  
-  .markdown-body li::marker {
-      content: '• ';
-      font-size: 1.2em;
+
+  .markdown-body ul {
+      list-style-type: circle;
   }
-    
+
+  .markdown-body ol {
+      list-style-type: numbered;
+  }
+
   .markdown-body a {
       color: #92b8e4;
       text-decoration-line: underline;
