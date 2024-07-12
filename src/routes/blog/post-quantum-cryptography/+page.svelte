@@ -38,12 +38,15 @@
 
     function convertRawKeyName(rawName: string | null, keys: any): string {
         if (rawName == null) {
+            console.log("returning doublequote")
             return ""
         }
 
         if (rawName?.startsWith("0x")){
+            console.log("returning rwaniame", keys[rawName])
             return keys[rawName]
         } else {
+            console.log("returning rawname", rawName)
             return rawName
         }
     }
