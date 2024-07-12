@@ -22,8 +22,10 @@
                     for (let i = 0; i < curvesArray.length; i++) {
                         curvesArray[i] = convertRawKeyName(curvesArray[i], json)
                     }
-                    curves = curvesArray.join("")
+                    curves = curvesArray.join(", ")
                 }
+
+                console.log(curve)
             })
         })
         fetch('../pqcrypt.md').then(response => {
