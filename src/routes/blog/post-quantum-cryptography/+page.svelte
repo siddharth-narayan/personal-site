@@ -26,7 +26,7 @@
                 }
             })
         })
-        fetch('../pqcrypt.md').then(response => {
+        fetch('/blog/post-quantum-cryptography.md').then(response => {
             response.text().then(text => {
                 console.log(text)
                 markdownContent = text
@@ -74,8 +74,5 @@
     }
     .red {
         color: red;
-    }
-    .unjustify {
-        text-justify: inter-character;
     }
 </style>
