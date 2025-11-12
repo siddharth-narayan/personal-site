@@ -55,7 +55,7 @@
 </div>
 <br>
 {#if curve != ""}
-    {#if curve.includes("kyber")}
+    {#if curve.includes("kyber") || curve.includes("MLKEM") }
         <div class="green">
             <p>Connected with curve {curve}. This means that your device is using post quantum cryptography</p>
         </div>

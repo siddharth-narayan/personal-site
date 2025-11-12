@@ -17,5 +17,4 @@
         <br><br>
         I'll have more details on that in the blog post, if I ever get around to writing it + finishing this website!
         <br><br>
-        Other than that, the "Useful websites" part will just be links to websites I think are cool, like the pre-google internet.
     </p>
