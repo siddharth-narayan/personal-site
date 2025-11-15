@@ -1,6 +1,6 @@
 // #import "lib.typ": *
 #import "@preview/finite:0.5.0": automaton, layout
-#import "scholar.typ": *
+#import "../lib/scholar.typ": *
 
 #html.frame[
   #set text(fill: white)
