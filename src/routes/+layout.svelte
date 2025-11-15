@@ -1,6 +1,5 @@
 <script>
     import "../app.css";
-    import '../markdown.css';
 </script>
 
 <div class="flex flex-col h-full xs:text-xs sm:text-sm md:text-base">
