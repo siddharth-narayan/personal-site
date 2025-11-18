@@ -8,13 +8,13 @@
     import { goto } from '$app/navigation';
     let slug = $page.params.slug;
     let html = $state("")
-
+    console.log("SLUG:" + slug)
     if (!slug || slug === "") {
         slug = "index"
     }
 
     onMount(() => {
-        fetch('/content/' + slug + '.html').then(async response => {
+        fetch('/build/' + slug + '.html').then(async response => {
             if (!response.ok) {
                 if (response.status == 404) {
                     goto("/error")

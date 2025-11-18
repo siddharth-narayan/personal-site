@@ -1,6 +1,6 @@
 <!-- src/routes/+page.svelte -->
 <script>
-  import Page from './[slug]/+page.svelte';
+  import Page from './[...slug]/+page.svelte';
 </script>
 
 <Page/>
