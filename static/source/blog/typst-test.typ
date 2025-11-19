@@ -1,10 +1,25 @@
 // #import "lib.typ": *
 #import "@preview/finite:0.5.0": automaton, layout
 #import "../../lib/scholar.typ": *
+#import "../../lib/html.typ": blockquote
 
 = This website is now written in Typst!
 
-What follows are a series of tests to make sure that all the Typst stuff works correctly
+What follows are some fragments of Typst code taken from somewhere else, to make sure that all the Typst stuff works correctly
+
+= Heading 1
+== Heading 2
+=== Heading 3
+
+`single_line_func()`
+
+*bold*
+
+_italic_
+
+
+
+#blockquote[Blockquote]
 
 ```c
 #include <stdio.h>

@@ -22,6 +22,7 @@
 #let pre = htmlfunc("pre")
 #let style = htmlfunc("style")
 #let button = htmlfunc("button")
+#let blockquote = htmlfunc("blockquote")
 #let code = htmlfunc("code")
 #let footer = htmlfunc("footer")
 
