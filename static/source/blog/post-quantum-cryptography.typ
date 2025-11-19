@@ -33,13 +33,13 @@ Steps 2, 3, and 4 are *necessary* for any post quantum functionality, and if any
 
 When I realized how difficult it would be for users, I started work on building post quantum functionality into SoftEtherVPN itself. Following oqs-provider's very simple [example code](https://github.com/open-quantum-safe/oqs-provider/blob/main/examples/static_oqsprovider.c), the actual change was only really the addition of these two pieces: ```OSSL_PROVIDER_add_builtin``` and ```extern OSSL_provider_init_fn oqs_provider_init```, which together registers a statically built in oqs-provider as a provider to OpenSSL, even if the library is not present in OpenSSL's module folder. The rest was wrestling with CMake (for a *very* long time) to get it to build oqs-provider and liboqs as git submodules without changing anything *inside* the submodules. With these changes, a user can now build from source on Windows and have post quantum functionality right away, by default.
 
-[Pull Request 1](https://github.com/SoftEtherVPN/SoftEtherVPN/pull/2002)
+#link("https://github.com/SoftEtherVPN/SoftEtherVPN/pull/2002")[Pull Request 1]
 
-[Pull Request 2](https://github.com/SoftEtherVPN/SoftEtherVPN/pull/2022)
+#link("https://github.com/SoftEtherVPN/SoftEtherVPN/pull/2022")[Pull Request 2]
 
 == Nginx
 This website is built with SvelteKit, but requests go through an Nginx reverse proxy. Now that we have OpenSSL 3 with oqs-provider installed, it's possible to just set the directive `ssl_ecdh_curve` in any server block (Although I had to set in the http block, otherwise it wouldn't work for some reason):
-```
+```nginx
 http {
         ssl_ecdh_curve x25519_kyber768:p384_kyber768:p521_kyber1024:x25519:secp384r1:x448:secp256r1:secp521r1;
 
