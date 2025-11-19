@@ -1,79 +1,101 @@
-.markdown-body blockquote {
-  border-left: 3px solid #999;
+.typst-body blockquote {
+  border-left: 3px solid var(--color-tertiary);
   padding: .5em;
   padding-left: 1em;
   padding-right: 1em;
   margin-left: 3px;
-  background-color: #232323;
+  background-color: var(--color-primary);
 }
 
 /* Code styles */
-.markdown-body pre {
-  background-color: #232323;
-  border-radius: .4em;
-  border: 1px solid #424242;
-  padding: 1em;
-  overflow: scroll;
-}
+  .typst-body pre {
+    background-color: var(--color-primary);
+    border-radius: .4em;
+    border: 1px solid var(--color-secondary);
+    padding: 1em;
+    overflow: auto; /* keep layout stable */
 
-.markdown-body pre > code {
-  font-family: Menlo, Monaco, "Courier New", monospace;
-  padding: 0;
-  border: none;
-}
+    /* Firefox Hide Scrollbar */
+    scrollbar-width: none; 
+    scrollbar-color: #888 var(--color-primary);
+  }
 
-.markdown-body code {
-  font-family: Menlo, Monaco, "Courier New", monospace;
-  background-color: #232323;
-  border-radius: .4em;
-  padding: .2em;
-  border: 1px solid #424242;
-}
+  /* Firefox Scrollbar Style */
+  .typst-body pre:hover {
+    scrollbar-width: auto; /* Firefox shows scrollbar */
+  }
+
+  /* WebKit Hide Scrollbar */
+  .typst-body pre::-webkit-scrollbar {
+    width: 0;
+    height: 0;
+  }
+  
+  .typst-body pre:hover::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+  }
+
+  .typst-body pre > code {
+    font-family: Menlo, Monaco, "Courier New", monospace;
+    padding: 0;
+    border: none;
+  }
+
+  .typst-body code {
+    font-family: Menlo, Monaco, "Courier New", monospace;
+    background-color: var(--color-primary);
+    border-radius: .4em;
+    padding: .2em;
+    border: 1px solid var(--color-secondary);
+  }
+
+/* End code styles */
 
 /* List styles */
-.markdown-body li {
+.typst-body li {
   margin-left: 2em;
 }
 
-.markdown-body ul {
+.typst-body ul {
   list-style-type: disc;
 }
 
-.markdown-body ol {
+.typst-body ol {
   list-style-type: decimal;
 }
 
 /* Heading styles */
-.markdown-body h1 {
+.typst-body h1 {
   font-size: 2.5em;
   line-height: 1.3em;
 }
 
-.markdown-body h2 {
+.typst-body h2 {
   font-size: 2em;
   line-height: 1.3em;
-  color: #92b8e4;
+  color: var(--color-accent);
 }
-.markdown-body h3 {
+.typst-body h3 {
   font-size: 1.5em;
-  color: #92b8e4;
+  color: var(--color-accent);
 }
 
-.markdown-body h1,
-.markdown-body h2,
-.markdown-body h3 {
+.typst-body h1,
+.typst-body h2,
+.typst-body h3 {
   padding: .3em;
   text-justify:inter-ideograph;
-  border-bottom: 1px solid #424242;
+  border-bottom: 1px solid var(--color-secondary);
 }
 
 /* Misc */
-.markdown-body a {
-  color: #92b8e4;
+.typst-body a {
+  color: var(--color-accent);
   text-decoration-line: underline;
 }
 
-.markdown-body img {
+.typst-body img {
   padding: 1em;
-  background-color: #232323;
+  background-color: var(--color-primary);
 }
