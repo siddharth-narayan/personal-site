@@ -7,6 +7,7 @@
       packages = with pkgs; [
         nodejs_22
         typst
+        python313Packages.mako
       ];
     };
   };
