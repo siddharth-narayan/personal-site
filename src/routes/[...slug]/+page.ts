@@ -12,8 +12,11 @@ export async function load({ fetch, params, url }) {
         return error(404)
     }
 
-    console.log("url: " + url.pathname + " slug: " + slug)
+    // Perhaps better?
+    // console.log("fetching: " + url.origin + '/build/' + params.slug + '.html')
+    // let response = await fetch(url.origin + '/build/' + params.slug + '.html')
 
+    console.log("url: " + url.pathname + " slug: " + slug)
     let response = await fetch('/build/' + params.slug + '.html')
     console.log(response.status)
     if (!response.ok) {
