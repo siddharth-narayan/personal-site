@@ -6,5 +6,6 @@ export default defineConfig({
 	plugins: [sveltekit(), tailwindcss()],
 	server: {
 		"port": 7000
-	}
+	},
+	preview: { port: 3000 }
 });

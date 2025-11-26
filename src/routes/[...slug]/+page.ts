@@ -14,7 +14,7 @@ export async function load({ fetch, params, url }) {
 
     console.log("url: " + url.pathname + " slug: " + slug)
 
-    let response = await fetch('/build/' + params.slug + '.html')
+    let response = await fetch('http://localhost:3000/build/' + params.slug + '.html')
     console.log(response.status)
     if (!response.ok) {
         return
