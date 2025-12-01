@@ -1,6 +1,5 @@
 <script lang="ts">
     import { onMount } from "svelte";
-    import "../markdown.css";
 
     let html = $state("");
 
