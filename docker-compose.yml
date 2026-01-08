@@ -5,9 +5,9 @@ services:
     restart: unless-stopped
     ports:
       - "7000:3000"
-    image: node:latest
+    image: ghcr.io/nixos/nix:2.31.3
     working_dir: /usr/src/app
     volumes:
       - /storage/docker-state/personal-site/:/usr/src/app
       - /storage/docker-state/jellyfin-stack/media/jellyfin-media/Photos/:/usr/src/app/static/assets/images
-    command: sh -c "npm install && npm run build && node build"
+    command: nix develop --command sh -c "cd static && make && cd .. && npm install && npm run build && node build"
