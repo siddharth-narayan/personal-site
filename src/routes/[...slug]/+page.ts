@@ -14,9 +14,13 @@ export async function load({ fetch, params, url }) {
 
     // Perhaps better?
     // console.log("fetching: " + url.origin + '/build/' + params.slug + '.html')
-    // let response = await fetch(url.origin + '/build/' + params.slug + '.html')
 
-    let response = await fetch('http://localhost:3000/build/' + params.slug + '.html')
+    // There's like 3 different ways to fetch
+    // let response = await fetch(url.origin + '/build/' + params.slug + '.html')
+    // let response = await fetch('http://localhost:3000/build/' + params.slug + '.html')
+    // let response = await fetch('/build/' + params.slug + '.html')
+
+    let response = await fetch('/build/' + params.slug + '.html')
     console.log(response.status)
     if (!response.ok) {
         return

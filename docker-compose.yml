@@ -9,5 +9,5 @@ services:
     working_dir: /usr/src/app
     volumes:
       - /storage/docker-state/personal-site/:/usr/src/app
-      - /storage/docker-state/jellyfin-stack/media/jellyfin-media/Photos/:/usr/src/app/static/images
+      - /storage/docker-state/jellyfin-stack/media/jellyfin-media/Photos/:/usr/src/app/static/assets/images
     command: sh -c "npm install && npm run build && node build"
