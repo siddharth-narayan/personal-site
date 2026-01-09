@@ -10,4 +10,4 @@ services:
     volumes:
       - /storage/docker-state/personal-site/:/usr/src/app
       - /storage/docker-state/jellyfin-stack/media/jellyfin-media/Photos/:/usr/src/app/static/assets/images
-    command: nix develop --extra-experimental-features 'nix-command flakes' --command sh -c "cd static && make && cd .. && npm install && npm run preview"
+    command: nix develop --extra-experimental-features 'nix-command flakes' --command sh -c "cd static && make && cd .. && npm install && npm run preview -- --host 0.0.0.0"
