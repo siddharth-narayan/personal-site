@@ -23,7 +23,7 @@ There are a lot of groups that oqs-provider has. The groups that will be used he
 == SoftEtherVPN
 It only took 13 lines of code to actually make the changes necessary in the SoftEtherVPN source code. Most of the difficulty came in research and reading the source to familiarize myself with how everything functioned. The only thing that was changed is loading and unloading the provider, and calling `SSL_set1_groups_list`. It really is that simple; checking the ClientHello packet in Wireshark, we can see that the client really does try to negotiate a post quantum key exchange.
 
-#image("../../assets/wireshark.png", alt: "Wireshark Screenshot")
+#html.elem("img", attrs: (src: "/assets/wireshark.png"))
 
 But it might not be that simple, actually. For these changes to actually make a connection with post quantum cryptography, a user will need to follow these steps
 1. Install SoftEtherVPN - with my changes
