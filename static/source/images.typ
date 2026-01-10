@@ -2,6 +2,7 @@
 #html.elem("img", attrs: (src: "/assets/images/DSC_0891.JPG", alt: "Sunset"))
 #html.elem("img", attrs: (src: "/assets/images/DSC_0893.JPG", alt: "Short Waterfall Stream"))
 #html.elem("img", attrs: (src: "/assets/images/DSC_0895.JPG", alt: "Tower"))
+#html.elem("img", attrs: (src: "/assets/images/20240504_104601.JPG", alt: "Lightning"))
 #html.elem("img", attrs: (src: "/assets/images/DSC_2293.JPG", alt: "Atmospheric Building"))
 #html.elem("img", attrs: (src: "/assets/images/DSC_3551 copy.JPG", alt: "Moon"))
 #html.elem("img", attrs: (src: "/assets/images/DSC_3994.JPG", alt: "Dallas Downtown"))
