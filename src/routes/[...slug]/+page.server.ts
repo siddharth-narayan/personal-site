@@ -9,6 +9,9 @@ export async function load({ fetch, params, url }) {
     }
 
     if (url.pathname.startsWith("/build")) {
+        // Asset not found in static folder, so it fell back to here
+        // We can maybe check for any dynamic files (added in after build) just in case
+
         return error(404)
     }
 
