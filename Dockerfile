@@ -5,3 +5,13 @@ WORKDIR /app
 COPY . .
 
 RUN nix develop --extra-experimental-features 'nix-command flakes' --command sh -c "cd static && make && cd .. && npm install"
+
+CMD [ "nix", \
+  "develop", \
+  "--extra-experimental-features", \
+  "nix-command flakes", \
+  "--command", \
+  "sh", \
+  "-c", \
+  "npm run build && node build" \
+]
