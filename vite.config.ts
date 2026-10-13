@@ -8,7 +8,7 @@ export default defineConfig({
 	plugins: [sveltekit({
 		adapter: adapter(),
 		paths: {
-			origin: 'http://localhost:3000'
+			origin: 'https://novaphaze.com'
 		}
 	}), tailwindcss()],
 });
