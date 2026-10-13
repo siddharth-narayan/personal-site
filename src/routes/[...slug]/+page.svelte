@@ -4,7 +4,7 @@
 
 <script lang="ts">
     import { page } from "$app/stores";
-    import { footers } from "$lib/footers";
+    import { footers } from "../../lib/footers";
     import type { Component } from "svelte";
     import "../../markdown.css"
     
