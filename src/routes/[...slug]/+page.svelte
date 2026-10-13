@@ -3,13 +3,13 @@
 </svelte:head>
 
 <script lang="ts">
-    import { page } from "$app/stores";
+    import { page } from "$app/state";
     import { footers } from "../../lib/footers";
     import type { Component } from "svelte";
     import "../../markdown.css"
     
     let { data } = $props()
-    let { slug } = $page.params
+    let { slug } = page.params
     
     // This is horrible :)
     let Footer: Component = footers[slug as keyof typeof footers]
